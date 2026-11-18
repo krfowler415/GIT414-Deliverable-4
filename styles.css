@@ -346,7 +346,7 @@
     display: block;
     inline-size: 100%;
     block-size: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
   }
 
@@ -426,7 +426,7 @@
 
 @layer utilities {
   .u-muted { color: var(--color-muted); }
-  .u-max-text { max-width: 60ch; }
+  .u-max-text { max-width: 75ch; }
   .u-mb-0 { margin-bottom: 0; }
 }
 
@@ -510,14 +510,33 @@
   }
 
   @media (max-width: 43.99rem) {
-    .hero { min-block-size: 20rem; }
+    .hero { min-block-size: 18rem; }
     .hero::before { background-position: center 52%; }
     .animal-card__body { padding: var(--space-medium); }
   }
 
+  /* Tablet and desktop hero background */
+  @media (min-width: 44rem) and (max-width: 99.99rem) {
+    .hero {
+      min-block-size: clamp(18rem, 35vw, 36rem);
+    }
+
+    .hero::before {
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(17,19,26,.10),
+          rgba(17,19,26,.18) 62%,
+          var(--color-deep-night)
+        ),
+        url("images/sonoran-desert-twilight-ultrawide.webp");
+      background-position: center 60%;
+    }
+  }
+
   /* Ultrawide hero background */
   @media (min-width: 100rem) {
-    .hero { min-block-size: 36rem; }
+    .hero { min-block-size: clamp(36rem, 35vw, 48rem); }
     .hero::before {
       inline-size: 100vw;
       -webkit-mask-image: none;
